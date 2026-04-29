@@ -1,0 +1,27 @@
+.rodape {
+  background-color: var(--cor-primaria-escura);
+  color: var(--cor-texto-claro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 2px solid var(--cor-secundaria);
+  height: 70px;
+  width: 100%;
+}
+
+.rodape-conteudo {
+  text-align: center;
+}
+
+.rodape-conteudo p {
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.rodape-conteudo span {
+  font-size: 0.75rem;
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}

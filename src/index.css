@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  background-color: var(--cor-fundo-padrao);
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: var(--cor-texto-padrao);
+}
+
+#root {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 60px 1fr 70px; 
+}
+
+:root {
+  --cor-primaria-clara: #4b7bec;
+  --cor-primaria: #2d98da;
+  --cor-primaria-escura: #0a3d62;
+
+  --cor-secundaria-clara: #fa983a;
+  --cor-secundaria: #e67e22;
+  --cor-secundaria-escura: #d35400;
+
+  --cor-fundo-padrao: #f1f2f6;
+  --cor-texto-padrao: #2f3542;
+  --cor-texto-claro: #ffffff;
+
+  --cor-info: #0fbcf9;
+  --cor-sucesso: #05c46b;
+  --cor-aviso: #ffc048;
+  --cor-erro: #ff5e57;
+
+  --cor-cinza: #a5b1c2;
+}

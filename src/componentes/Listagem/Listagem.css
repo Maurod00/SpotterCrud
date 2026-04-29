@@ -1,0 +1,118 @@
+.container-listagem {
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.header-lista {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header-lista h2 {
+  font-size: 1.1rem;
+  color: var(--cor-primaria-escura);
+}
+
+.badge {
+  background-color: var(--cor-secundaria);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.grid-spotter {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.card-spotter {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.card-imagem {
+  position: relative;
+  height: 160px;
+  background-color: var(--cor-cinza);
+}
+
+.card-imagem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sem-foto {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.tag-prefixo {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--cor-primaria-escura);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.card-info {
+  padding: 15px;
+  flex-grow: 1;
+}
+
+.card-info h3 {
+  font-size: 1rem;
+  margin-bottom: 5px;
+  color: var(--cor-texto-padrao);
+}
+
+.card-info p {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.card-acoes {
+  display: flex;
+  border-top: 1px solid #eee;
+}
+
+.card-acoes button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.btn-editar {
+  color: var(--cor-primaria);
+  border-right: 1px solid #eee;
+}
+
+.btn-excluir {
+  color: var(--cor-erro);
+}
+
+.card-acoes button:hover {
+  background-color: #f8f8f8;
+}
