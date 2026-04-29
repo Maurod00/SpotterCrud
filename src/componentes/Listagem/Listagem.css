@@ -1,48 +1,60 @@
 .container-listagem {
   padding: 20px;
-  overflow-y: auto;
+  position: relative;
+  min-height: calc(100vh - 130px);
 }
 
 .header-lista {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid var(--cor-cinza);
+  padding-bottom: 10px;
 }
 
 .header-lista h2 {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: var(--cor-primaria-escura);
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .badge {
   background-color: var(--cor-secundaria);
   color: white;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 0.75rem;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
   font-weight: bold;
 }
 
 .grid-spotter {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
+  gap: 25px;
+  padding-bottom: 80px;
 }
 
 .card-spotter {
   background: white;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
+  transition: transform 0.2s;
+}
+
+.card-spotter:hover {
+  transform: translateY(-5px);
 }
 
 .card-imagem {
   position: relative;
-  height: 160px;
-  background-color: var(--cor-cinza);
+  height: 180px;
+  background-color: #ddd;
 }
 
 .card-imagem img {
@@ -56,20 +68,21 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  color: white;
-  font-size: 0.9rem;
+  color: #777;
+  font-style: italic;
 }
 
 .tag-prefixo {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 12px;
+  right: 12px;
   background: var(--cor-primaria-escura);
   color: white;
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
   font-weight: bold;
+  text-transform: uppercase;
 }
 
 .card-info {
@@ -78,35 +91,38 @@
 }
 
 .card-info h3 {
-  font-size: 1rem;
-  margin-bottom: 5px;
+  font-size: 1.1rem;
+  margin-bottom: 6px;
   color: var(--cor-texto-padrao);
 }
 
 .card-info p {
-  font-size: 0.85rem;
-  color: #666;
+  font-size: 0.9rem;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .card-acoes {
   display: flex;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #f0f0f0;
 }
 
 .card-acoes button {
   flex: 1;
-  padding: 12px;
+  padding: 15px;
   border: none;
   background: none;
   cursor: pointer;
-  font-size: 0.85rem;
   font-weight: bold;
+  font-size: 0.9rem;
   transition: background 0.2s;
 }
 
 .btn-editar {
   color: var(--cor-primaria);
-  border-right: 1px solid #eee;
+  border-right: 1px solid #f0f0f0;
 }
 
 .btn-excluir {
@@ -114,5 +130,36 @@
 }
 
 .card-acoes button:hover {
-  background-color: #f8f8f8;
+  background-color: #fafafa;
+}
+
+.fab-novo {
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background-color: var(--cor-secundaria);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 2rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.fab-novo:hover {
+  transform: scale(1.1) rotate(90deg);
+  background-color: var(--cor-secundaria-escura);
+}
+
+.vazio {
+  text-align: center;
+  padding: 50px;
+  color: var(--cor-cinza);
 }

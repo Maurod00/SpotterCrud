@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Listagem.css';
 
-const Listagem = ({ registros, excluirRegistro, setRegistroParaEditar }) => {
+const Listagem = ({ registros, excluirRegistro }) => {
+  const navigate = useNavigate();
+
   return (
     <section className="container-listagem">
       <div className="header-lista">
@@ -34,7 +37,7 @@ const Listagem = ({ registros, excluirRegistro, setRegistroParaEditar }) => {
               <div className="card-acoes">
                 <button 
                   className="btn-editar" 
-                  onClick={() => setRegistroParaEditar(item)}
+                  onClick={() => navigate(`/editar/${item.id}`)}
                 >
                   Editar
                 </button>
@@ -49,6 +52,14 @@ const Listagem = ({ registros, excluirRegistro, setRegistroParaEditar }) => {
           ))}
         </div>
       )}
+
+      <button 
+        className="fab-novo" 
+        onClick={() => navigate('/novo')}
+        title="Adicionar Novo Spotting"
+      >
+        +
+      </button>
     </section>
   );
 };

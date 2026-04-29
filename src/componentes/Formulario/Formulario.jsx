@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import './Formulario.css';
 
-const Formulario = ({ salvarRegistro, registroParaEditar, cancelarEdicao }) => {
+const Formulario = ({ salvarRegistro, registros }) => {
+  const { id } = useParams();
+  const navigate = useNavigate();
   const [spotting, setSpotting] = useState({ 
     prefixo: '', 
     modelo: '', 
@@ -10,10 +13,13 @@ const Formulario = ({ salvarRegistro, registroParaEditar, cancelarEdicao }) => {
   });
 
   useEffect(() => {
-    if (registroParaEditar) {
-      setSpotting(registroParaEditar);
+    if (id && registros) {
+      const registroExistente = registros.find(r => r.id === parseInt(id));
+      if (registroExistente) {
+        setSpotting(registroExistente);
+      }
     }
-  }, [registroParaEditar]);
+  }, [id, registros]);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -29,23 +35,22 @@ const Formulario = ({ salvarRegistro, registroParaEditar, cancelarEdicao }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!spotting.prefixo || !spotting.modelo || !spotting.local) {
-      alert("Campos obrigatórios: Prefixo, Modelo e Local!");
+      alert("Preencha os campos obrigatórios!");
       return;
     }
     salvarRegistro(spotting);
-    setSpotting({ prefixo: '', modelo: '', local: '', imagem: '' });
+    navigate('/');
   };
 
   return (
     <section className="container-formulario">
       <form onSubmit={handleSubmit} className="form-spotter">
-        <h2>{registroParaEditar ? '📝 Editar Registro' : '✈️ Novo Spotting'}</h2>
+        <h2>{id ? '📝 Editar Registro' : '✈️ Novo Spotting'}</h2>
         
         <div className="input-group">
           <label>Prefixo</label>
           <input 
             type="text" 
-            placeholder="Ex: PR-GUO" 
             value={spotting.prefixo}
             onChange={(e) => setSpotting({...spotting, prefixo: e.target.value})}
           />
@@ -55,7 +60,6 @@ const Formulario = ({ salvarRegistro, registroParaEditar, cancelarEdicao }) => {
           <label>Modelo</label>
           <input 
             type="text" 
-            placeholder="Ex: Airbus A320" 
             value={spotting.modelo}
             onChange={(e) => setSpotting({...spotting, modelo: e.target.value})}
           />
@@ -65,7 +69,6 @@ const Formulario = ({ salvarRegistro, registroParaEditar, cancelarEdicao }) => {
           <label>Localização</label>
           <input 
             type="text" 
-            placeholder="Ex: SBPA (Porto Alegre)" 
             value={spotting.local}
             onChange={(e) => setSpotting({...spotting, local: e.target.value})}
           />
@@ -87,13 +90,11 @@ const Formulario = ({ salvarRegistro, registroParaEditar, cancelarEdicao }) => {
 
         <div className="acoes">
           <button type="submit" className="btn-salvar">
-            {registroParaEditar ? 'Atualizar' : 'Salvar Registro'}
+            {id ? 'Atualizar' : 'Salvar Registro'}
           </button>
-          {registroParaEditar && (
-            <button type="button" onClick={cancelarEdicao} className="btn-cancelar">
-              Cancelar
-            </button>
-          )}
+          <button type="button" onClick={() => navigate('/')} className="btn-cancelar">
+            Voltar
+          </button>
         </div>
       </form>
     </section>

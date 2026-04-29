@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Cabecalho from './componentes/Cabecalho/Cabecalho';
 import Rodape from './componentes/Rodape/Rodape';
 import Formulario from './componentes/Formulario/Formulario';
@@ -9,8 +10,6 @@ function App() {
     const dadosSalvos = localStorage.getItem('spotter_data');
     return dadosSalvos ? JSON.parse(dadosSalvos) : [];
   });
-  
-  const [registroParaEditar, setRegistroParaEditar] = useState(null);
 
   useEffect(() => {
     localStorage.setItem('spotter_data', JSON.stringify(registros));
@@ -22,44 +21,39 @@ function App() {
         item.id === dados.id ? dados : item
       );
       setRegistros(listaAtualizada);
-      setRegistroParaEditar(null);
     } else {
-      const novoRegistro = { 
-        ...dados, 
-        id: Date.now() 
-      };
+      const novoRegistro = { ...dados, id: Date.now() };
       setRegistros([...registros, novoRegistro]);
     }
   };
 
   const excluirRegistro = (id) => {
-    if (window.confirm("Tem certeza que deseja remover este registro de spotting?")) {
-      const listaFiltrada = registros.filter((item) => item.id !== id);
-      setRegistros(listaFiltrada);
+    if (window.confirm("Deseja remover este registro?")) {
+      setRegistros(registros.filter((item) => item.id !== id));
     }
   };
 
-  const cancelarEdicao = () => {
-    setRegistroParaEditar(null);
-  };
-
   return (
-    <>
+    <Router>
       <Cabecalho />
       <main className="conteudo-principal">
-        <Formulario 
-          salvarRegistro={salvarRegistro} 
-          registroParaEditar={registroParaEditar}
-          cancelarEdicao={cancelarEdicao}
-        />
-        <Listagem 
-          registros={registros} 
-          excluirRegistro={excluirRegistro} 
-          setRegistroParaEditar={setRegistroParaEditar}
-        />
+        <Routes>
+          <Route path="/" element={
+            <Listagem 
+              registros={registros} 
+              excluirRegistro={excluirRegistro} 
+            />
+          } />
+          <Route path="/novo" element={
+            <Formulario salvarRegistro={salvarRegistro} />
+          } />
+          <Route path="/editar/:id" element={
+            <Formulario salvarRegistro={salvarRegistro} registros={registros} />
+          } />
+        </Routes>
       </main>
       <Rodape />
-    </>
+    </Router>
   );
 }
 
