@@ -59,7 +59,6 @@ const Formulario = ({ salvarRegistro, registros }) => {
           <label>Prefixo</label>
           <input 
             type="text" 
-            placeholder="XX-XXX"
             value={spotting.prefixo}
             onChange={handlePrefixoChange}
           />
