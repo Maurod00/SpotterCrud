@@ -14,7 +14,7 @@ const Listagem = ({ registros, excluirRegistro }) => {
 
       {registros.length === 0 ? (
         <div className="vazio">
-          <p>Nenhum registro de spotting encontrado.</p>
+          <p>Nenhum registro encontrado.</p>
         </div>
       ) : (
         <div className="grid-spotter">
@@ -35,16 +35,10 @@ const Listagem = ({ registros, excluirRegistro }) => {
               </div>
 
               <div className="card-acoes">
-                <button 
-                  className="btn-editar" 
-                  onClick={() => navigate(`/editar/${item.id}`)}
-                >
+                <button className="btn-editar" onClick={() => navigate(`/editar/${item.id}`)}>
                   Editar
                 </button>
-                <button 
-                  className="btn-excluir" 
-                  onClick={() => excluirRegistro(item.id)}
-                >
+                <button className="btn-excluir" onClick={() => excluirRegistro(item.id)}>
                   Excluir
                 </button>
               </div>
@@ -53,11 +47,7 @@ const Listagem = ({ registros, excluirRegistro }) => {
         </div>
       )}
 
-      <button 
-        className="fab-novo" 
-        onClick={() => navigate('/novo')}
-        title="Adicionar Novo Spotting"
-      >
+      <button className="fab-novo" onClick={() => navigate('/novo')} title="Novo Spotting">
         +
       </button>
     </section>

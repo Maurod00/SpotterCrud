@@ -15,11 +15,19 @@ const Formulario = ({ salvarRegistro, registros }) => {
   useEffect(() => {
     if (id && registros) {
       const registroExistente = registros.find(r => r.id === parseInt(id));
-      if (registroExistente) {
-        setSpotting(registroExistente);
-      }
+      if (registroExistente) setSpotting(registroExistente);
     }
   }, [id, registros]);
+
+  const handlePrefixoChange = (e) => {
+    let value = e.target.value.toUpperCase().replace(/[^A-Z]/g, '');
+    if (value.length > 2) {
+      value = value.substring(0, 2) + '-' + value.substring(2, 5);
+    }
+    if (value.length <= 6) {
+      setSpotting({ ...spotting, prefixo: value });
+    }
+  };
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -51,8 +59,9 @@ const Formulario = ({ salvarRegistro, registros }) => {
           <label>Prefixo</label>
           <input 
             type="text" 
+            placeholder="XX-XXX"
             value={spotting.prefixo}
-            onChange={(e) => setSpotting({...spotting, prefixo: e.target.value})}
+            onChange={handlePrefixoChange}
           />
         </div>
 
@@ -76,11 +85,7 @@ const Formulario = ({ salvarRegistro, registros }) => {
 
         <div className="input-group">
           <label>Foto da Aeronave</label>
-          <input 
-            type="file" 
-            accept="image/*"
-            onChange={handleImageChange}
-          />
+          <input type="file" accept="image/*" onChange={handleImageChange} />
           {spotting.imagem && (
             <div className="preview-mini">
               <img src={spotting.imagem} alt="Preview" />

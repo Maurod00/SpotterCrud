@@ -39,10 +39,7 @@ function App() {
       <main className="conteudo-principal">
         <Routes>
           <Route path="/" element={
-            <Listagem 
-              registros={registros} 
-              excluirRegistro={excluirRegistro} 
-            />
+            <Listagem registros={registros} excluirRegistro={excluirRegistro} />
           } />
           <Route path="/novo" element={
             <Formulario salvarRegistro={salvarRegistro} />
