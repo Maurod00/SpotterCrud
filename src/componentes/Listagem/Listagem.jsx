@@ -26,9 +26,11 @@ const Listagem = ({ registros, excluirRegistro }) => {
                 ) : (
                   <div className="sem-foto">Sem Foto</div>
                 )}
-                <span className="tag-prefixo">{item.prefixo}</span>
+                <span className="tag-prefixo">
+                  <a href={`https://pt.airnavradar.com/data/registration/${item.prefixo}`} target='_blank'>{item.prefixo}</a>
+                </span>
               </div>
-              
+
               <div className="card-info">
                 <h3>{item.modelo}</h3>
                 <p>📍 {item.local}</p>
