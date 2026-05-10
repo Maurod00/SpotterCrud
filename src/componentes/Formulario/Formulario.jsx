@@ -20,11 +20,9 @@ const Formulario = ({ salvarRegistro, registros }) => {
   }, [id, registros]);
 
   const handlePrefixoChange = (e) => {
-    let value = e.target.value.toUpperCase().replace(/[^A-Z]/g, '');
-    if (value.length > 2) {
-      value = value.substring(0, 2) + '-' + value.substring(2, 5);
-    }
-    if (value.length <= 6) {
+    let value = e.target.value.toUpperCase().replace(/[^A-Z0-9-]/g, '');
+    
+    if (value.length <= 8) {
       setSpotting({ ...spotting, prefixo: value });
     }
   };
