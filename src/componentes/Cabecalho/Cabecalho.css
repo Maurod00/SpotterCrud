@@ -46,3 +46,20 @@
   border-radius: 50%;
   box-shadow: 0 0 5px var(--cor-sucesso);
 }
+
+.usuario-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.btn-logout {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
